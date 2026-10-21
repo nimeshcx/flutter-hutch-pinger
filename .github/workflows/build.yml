@@ -12,15 +12,15 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
-      - name: Setup Flutter SDK
+      - name: Setup Flutter SDK & Android Toolchain
         uses: subosito/flutter-action@v2
         with:
           flutter-version: '3.19.0'
           channel: 'stable'
+          android: true
           cache: true
-      - name: Accept Android Licenses & Build APK
+      - name: Build Flutter APK
         run: |
-          yes | flutter doctor --android-licenses
           flutter pub get
           flutter build apk --debug
       - uses: actions/upload-artifact@v4
